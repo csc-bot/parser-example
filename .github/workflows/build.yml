@@ -1,0 +1,19 @@
+name: Build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Check codestyle
+        run: git ls-files *.{cpp,hpp} | xargs clang-format -i && git diff --exit-code
+
+      - name: Install clang-tidy
+        run: sudo apt install clang-tidy
+
+      - name: Build application
+        run: ./build.sh
