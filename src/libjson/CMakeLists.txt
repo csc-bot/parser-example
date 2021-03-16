@@ -10,16 +10,26 @@ target_include_directories(${lib_name} PUBLIC .)
 target_sources(
   ${lib_name}
   PUBLIC
+    libjson/ast/Ast.hpp
+    libjson/ast/Visitor.hpp
+    libjson/ast/XmlSerializer.hpp
     libjson/dump_tokens.hpp
+    libjson/parser.hpp
   PRIVATE
+    libjson/ast/detail/Builder.cpp
+    libjson/ast/detail/Builder.hpp
+    libjson/ast/Ast.cpp
+    libjson/ast/XmlSerializer.cpp
     libjson/dump_tokens.cpp
+    libjson/parser.cpp
 )
 
 target_link_libraries(
   ${lib_name}
   PRIVATE
-    JsonLexer
+    Json
     fmt
+    pugixml
 )
 
 set(test_name libjson_test)
@@ -34,6 +44,7 @@ target_sources(
   ${test_name}
   PRIVATE
     test/lexer.cpp
+    test/parser.cpp
 )
 
 target_link_libraries(
