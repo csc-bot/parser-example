@@ -33,7 +33,7 @@ antlrcpp::Any Builder::visitMembers(JsonParser::MembersContext* context) {
 antlrcpp::Any Builder::visitArray(JsonParser::ArrayContext* context) {
   Array::Elements elements;
   for (const auto& element : context->element()) {
-    elements.push_back(visit(element));
+    elements.push_back(visit(element).as<Value*>());
   }
   return static_cast<Value*>(document_.create_node<Array>(elements));
 }
