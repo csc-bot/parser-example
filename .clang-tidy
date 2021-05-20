@@ -5,6 +5,7 @@ Checks: >
   *,
   -cert-err58-cpp,
   -fuchsia-*,
+  -llvmlibc-*,
   -llvm-header-guard,
   -modernize-use-nodiscard,
   -modernize-use-trailing-return-type,
