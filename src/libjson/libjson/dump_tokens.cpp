@@ -6,7 +6,7 @@
 
 namespace json {
 
-static std::string get_token_type_name(
+static std::string_view get_token_type_name(
     const JsonLexer& lexer,
     const antlr4::Token& token) {
   return lexer.getVocabulary().getSymbolicName(token.getType());

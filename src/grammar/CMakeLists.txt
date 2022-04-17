@@ -11,6 +11,9 @@ antlr_target(
   LEXER
 )
 
+include(CompileOptions)
+target_set_cxx_stanrard(${lexer_lib_name})
+
 target_sources(
   ${lexer_lib_name}
   PRIVATE

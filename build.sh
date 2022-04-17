@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly antlr=antlr-4.9.1-complete.jar
+readonly antlr=antlr-4.10.1-complete.jar
 
 curl -O https://www.antlr.org/download/$antlr
 

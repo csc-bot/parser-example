@@ -13,7 +13,8 @@
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "ANTLR_EXECUTABLE": "${sourceDir}/antlr-4.9.1-complete.jar"
+        "ANTLR_EXECUTABLE": "${sourceDir}/antlr-4.10.1-complete.jar",
+        "ANTLR4_TAG": "4.10.1"
       }
     },
     {
@@ -23,7 +24,8 @@
       "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "ANTLR_EXECUTABLE": "${sourceDir}/antlr-4.9.1-complete.jar"
+        "ANTLR_EXECUTABLE": "${sourceDir}/antlr-4.10.1-complete.jar",
+        "ANTLR4_TAG": "v4.10.1"
       }
     }
   ],
