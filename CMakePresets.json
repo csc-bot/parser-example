@@ -7,25 +7,29 @@
   },
   "configurePresets": [
     {
+      "name": "base",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "ANTLR_EXECUTABLE": "${sourceDir}/antlr-4.10.1-complete.jar",
+        "ANTLR4_TAG": "v4.10.1"
+      }
+    },
+    {
       "name": "release",
       "displayName": "release",
-      "generator": "Ninja",
+      "inherits": "base",
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "ANTLR_EXECUTABLE": "${sourceDir}/antlr-4.10.1-complete.jar",
-        "ANTLR4_TAG": "4.10.1"
+        "CMAKE_BUILD_TYPE": "Release"
       }
     },
     {
       "name": "debug",
       "displayName": "debug",
-      "generator": "Ninja",
+      "inherits": "base",
       "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "ANTLR_EXECUTABLE": "${sourceDir}/antlr-4.10.1-complete.jar",
-        "ANTLR4_TAG": "v4.10.1"
+        "CMAKE_BUILD_TYPE": "Debug"
       }
     }
   ],
