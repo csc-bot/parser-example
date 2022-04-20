@@ -26,8 +26,12 @@ target_include_directories(
     ${ANTLR_${antlr_lexer_target_name}_OUTPUT_DIR}
 )
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
 target_link_libraries(
   ${lexer_lib_name}
   PUBLIC
     antlr4
+    Threads::Threads
 )
