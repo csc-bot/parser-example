@@ -8,19 +8,13 @@ std::any Builder::visitDocument(JsonParser::DocumentContext* context) {
   return value;
 }
 
-std::any Builder::visitObject(JsonParser::ObjectContext* context) {
-  auto const members =
-      std::any_cast<Object::Members>(visit(context->members()));
-  return static_cast<Value*>(document_.create_node<Object>(members));
-}
-
 static std::string trim_quotes(const std::string& str) {
   // NOLINTNEXTLINE
   assert(str[0] == '"' && str[str.size() - 1] == '"');
   return str.substr(1, str.size() - 2);
 }
 
-std::any Builder::visitMembers(JsonParser::MembersContext* context) {
+std::any Builder::visitObject(JsonParser::ObjectContext* context) {
   Object::Members members;
   for (auto* member : context->member()) {
     auto const key_text = trim_quotes(member->STRING()->getText());
@@ -28,7 +22,7 @@ std::any Builder::visitMembers(JsonParser::MembersContext* context) {
     auto* element = std::any_cast<Value*>(visit(member->element()));
     members.emplace_back(key, element);
   }
-  return members;
+  return static_cast<Value*>(document_.create_node<Object>(members));
 }
 
 std::any Builder::visitArray(JsonParser::ArrayContext* context) {

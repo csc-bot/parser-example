@@ -13,11 +13,7 @@ element
 
 object
    : LBRACE RBRACE
-   | LBRACE members RBRACE
-   ;
-
-members
-   : member (COMMA member)*
+   | LBRACE member (COMMA member)* RBRACE
    ;
 
 member

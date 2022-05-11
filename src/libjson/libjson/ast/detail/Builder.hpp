@@ -15,7 +15,6 @@ class Builder final : public JsonBaseVisitor {
 
   std::any visitDocument(JsonParser::DocumentContext* context) override;
   std::any visitObject(JsonParser::ObjectContext* context) override;
-  std::any visitMembers(JsonParser::MembersContext* context) override;
   std::any visitArray(JsonParser::ArrayContext* context) override;
   std::any visitNumber(JsonParser::NumberContext* context) override;
   std::any visitString(JsonParser::StringContext* context) override;
