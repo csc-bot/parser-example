@@ -2,13 +2,13 @@
 
 namespace json::ast::detail {
 
-antlrcpp::Any Builder::visitDocument(JsonParser::DocumentContext* context) {
+std::any Builder::visitDocument(JsonParser::DocumentContext* context) {
   auto* value = std::any_cast<Value*>(visitChildren(context));
   document_.set_value(value);
   return value;
 }
 
-antlrcpp::Any Builder::visitObject(JsonParser::ObjectContext* context) {
+std::any Builder::visitObject(JsonParser::ObjectContext* context) {
   auto const members =
       std::any_cast<Object::Members>(visit(context->members()));
   return static_cast<Value*>(document_.create_node<Object>(members));
@@ -20,7 +20,7 @@ static std::string trim_quotes(const std::string& str) {
   return str.substr(1, str.size() - 2);
 }
 
-antlrcpp::Any Builder::visitMembers(JsonParser::MembersContext* context) {
+std::any Builder::visitMembers(JsonParser::MembersContext* context) {
   Object::Members members;
   for (auto* member : context->member()) {
     auto const key_text = trim_quotes(member->STRING()->getText());
@@ -31,7 +31,7 @@ antlrcpp::Any Builder::visitMembers(JsonParser::MembersContext* context) {
   return members;
 }
 
-antlrcpp::Any Builder::visitArray(JsonParser::ArrayContext* context) {
+std::any Builder::visitArray(JsonParser::ArrayContext* context) {
   Array::Elements elements;
   for (const auto& element : context->element()) {
     elements.push_back(std::any_cast<Value*>(visit(element)));
@@ -39,11 +39,11 @@ antlrcpp::Any Builder::visitArray(JsonParser::ArrayContext* context) {
   return static_cast<Value*>(document_.create_node<Array>(elements));
 }
 
-antlrcpp::Any Builder::visitNumber(JsonParser::NumberContext* context) {
+std::any Builder::visitNumber(JsonParser::NumberContext* context) {
   return static_cast<Value*>(document_.create_node<Number>(context->getText()));
 }
 
-antlrcpp::Any Builder::visitString(JsonParser::StringContext* context) {
+std::any Builder::visitString(JsonParser::StringContext* context) {
   auto const text = trim_quotes(context->getText());
   return static_cast<Value*>(document_.create_node<String>(text));
 }
